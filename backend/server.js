@@ -1,0 +1,66 @@
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
+
+import patientRoutes from "./routes/patientRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+import doctorRoutes from "./routes/doctorRoutes.js";
+import passwordRoutes from "./routes/PasswordRoutes.js";
+import chatRoutes from "./routes/chatRoutes.js";
+import adminRoutes from "./routes/adminRoutes.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: path.join(__dirname, ".env") });
+
+let mongoUri = process.env.MONGO_URI;
+if (!mongoUri) {
+  console.log("No MONGO_URI provided in .env. Initializing in-memory MongoDB...");
+  try {
+    const { MongoMemoryServer } = await import("mongodb-memory-server");
+    const mongod = await MongoMemoryServer.create();
+    mongoUri = mongod.getUri();
+    console.log("In-memory MongoDB ready at:", mongoUri);
+  } catch (err) {
+    console.error("Failed to initialize MongoDB:", err);
+    process.exit(1);
+  }
+}
+
+const app = express();
+const corsOptions = {
+  origin: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+};
+
+app.use(cors(corsOptions));
+app.options(/.*/, cors(corsOptions));
+app.use(express.json());
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+mongoose
+  .connect(mongoUri)
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error(err));
+
+app.use("/api/patients", patientRoutes);
+
+app.use("/api/auth", authRoutes);
+
+app.use("/api/doctors", doctorRoutes);
+
+app.use("/api/password", passwordRoutes);
+
+app.use("/api/chat", chatRoutes);
+app.use("/api/admin", adminRoutes);
+
+const PORT = process.env.PORT || 5050;
+app.listen(PORT, () =>
+  console.log(`Server running on port ${PORT}`)
+);

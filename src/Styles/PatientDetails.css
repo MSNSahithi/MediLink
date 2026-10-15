@@ -1,0 +1,245 @@
+/* ===== MODERN PATIENT DETAILS STYLES ===== */
+
+.pd-container {
+  min-height: 100vh;
+  padding: 30px 20px 60px 20px;
+  background: var(--page-gradient);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pd-container .pw-navbar {
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 24px;
+}
+
+.pd-content {
+  width: 100%;
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pd-heading {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.025em;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.pd-loading {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.pd-box {
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 20px;
+  width: 100%;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 0 1px 1px rgba(0, 0, 0, 0.02);
+}
+
+.pd-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #f1f5f9;
+  gap: 16px;
+}
+
+.pd-row:last-child {
+  border-bottom: none;
+}
+
+.pd-key {
+  font-size: 0.925rem;
+  font-weight: 600;
+  color: #475569;
+  text-transform: capitalize;
+}
+
+.pd-value {
+  color: #0f172a;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: right;
+  max-width: 65%;
+  word-break: break-word;
+}
+
+/* Prescription Card */
+.pd-prescription-image {
+  position: relative;
+  max-width: 320px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 8px;
+  background: #f8fafc;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.pd-prescription-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+.pd-prescription-delete {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  border: none;
+  background: rgba(220, 38, 38, 0.95);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.pd-prescription-image:hover .pd-prescription-delete {
+  opacity: 1;
+}
+
+/* Actions Bar */
+.pd-actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.pd-edit-btn {
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  padding: 12px 22px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+.pd-edit-btn:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+}
+
+.pd-risk-btn {
+  border: none;
+  background: linear-gradient(135deg, #7c3aed 0%, #6366f1 100%);
+  color: white;
+  padding: 12px 22px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+  transition: all 0.2s ease;
+}
+
+.pd-risk-btn:hover:not(:disabled) {
+  box-shadow: 0 6px 18px rgba(124, 58, 237, 0.45);
+  transform: translateY(-1px);
+}
+
+.pd-summary-btn {
+  border: none;
+  background: var(--primary-gradient);
+  color: white;
+  padding: 12px 22px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+  transition: all 0.2s ease;
+}
+
+.pd-summary-btn:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.45);
+  transform: translateY(-1px);
+}
+
+.pd-summary-btn:disabled,
+.pd-risk-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Disease Pills */
+.pd-disease-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.pd-disease-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pd-disease-category {
+  font-weight: 700;
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+  border-radius: 9999px;
+  padding: 3px 10px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.pd-disease-items {
+  color: #334155;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .pd-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .pd-value {
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .pd-box {
+    padding: 20px 16px;
+  }
+
+  .pd-actions {
+    flex-direction: column;
+  }
+
+  .pd-actions button {
+    width: 100%;
+  }
+}
